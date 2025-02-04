@@ -444,6 +444,8 @@ def _write_file_content(content, filename):
     return fp.write(content)
 
 
+
+## TODO: check how this is done..
 def _remove_comments_and_commands_to_delete(content, parameters):
   """Erases all LaTeX comments in the content, and writes it."""
   content = [_remove_comments_inline(line) for line in content]
