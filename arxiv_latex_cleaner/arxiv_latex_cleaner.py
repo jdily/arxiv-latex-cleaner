@@ -141,7 +141,7 @@ def _remove_command(text, command, keep_text=False):
         new_substring = ''
       else:
         temp_substring = text[match.span()[0] : match.span()[1]]
-        new_substring = extract_text_inside_curly_braces(temp_substring)
+        new_substring = extract_text_inside_curly_braces(temp_substring).strip()
 
       if match.span()[1] < len(text):
         next_newline = text[match.span()[1] :].find('\n')
