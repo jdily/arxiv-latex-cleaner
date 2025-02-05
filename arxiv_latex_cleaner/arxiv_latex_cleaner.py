@@ -26,6 +26,8 @@ import tempfile
 from PIL import Image
 import regex
 
+from ipdb import set_trace as st
+
 PDF_RESIZE_COMMAND = (
     'gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH '
     '-dDownsampleColorImages=true -dColorImageResolution={resolution} '
@@ -668,7 +670,6 @@ def _keep_only_referenced_tex(contents, splits):
             r'(' + os.path.splitext(fn)[0] + r'[.}])', '\n'.join(contents[fn2])
         ):
           referenced.add(fn)
-
     if referenced == old_referenced:
       splits['tex_to_copy'] = list(referenced)
       return
@@ -809,7 +810,7 @@ def run_arxiv_cleaner(parameters):
       parameters['input_folder'] = tempdir
 
     splits = _split_all_files(parameters)
-
+    
     logging.info('Reading all tex files')
     tex_contents = _read_all_tex_contents(
         splits['tex_in_root'] + splits['tex_not_in_root'], parameters
